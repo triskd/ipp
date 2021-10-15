@@ -1,0 +1,11 @@
+.IPPcode20
+#hello world + loop
+DEFVAR GF@counter
+MOVE GF@counter int@0
+LABEL while
+JUMPIFEQ end GF@counter int@10
+WRITE GF@counter
+WRITE string@.\032hello\032world\010
+ADD GF@counter GF@counter int@1
+JUMP while
+LABEL end

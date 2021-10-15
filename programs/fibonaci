@@ -1,0 +1,22 @@
+.IPPcode20
+#fibonaciho posloupnost prvnich 20 cisel
+WRITE string@1.\032cislo\032je:\0321\010
+DEFVAR GF@counter
+DEFVAR GF@last
+DEFVAR GF@new
+DEFVAR GF@number
+MOVE GF@counter int@2
+MOVE GF@last int@0
+MOVE GF@new int@1
+LABEL loop
+JUMPIFEQ end GF@counter int@21
+ADD GF@number GF@last GF@new
+MOVE GF@last GF@new
+MOVE GF@new GF@number
+WRITE GF@counter
+WRITE string@.\032cislo\032je:\032
+WRITE GF@number
+WRITE string@\010
+ADD GF@counter GF@counter int@1
+JUMP loop
+LABEL end

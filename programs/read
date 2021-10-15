@@ -1,0 +1,98 @@
+.IPPcode20
+#nacteni vstupu, jednoducha kalkulacka
+DEFVAR GF@number1
+DEFVAR GF@number2
+DEFVAR GF@operation
+LABEL start
+WRITE string@----------------------------------\010
+WRITE string@zadejte\032pozadovanou\032operaci:\010
+WRITE string@\032\032'add'\032-\032pro\032scitani\010
+WRITE string@\032\032'sub'\032-\032pro\032odcitani\010
+WRITE string@\032\032'mul'\032-\032pro\032nasobeni\010
+WRITE string@\032\032'div'\032-\032pro\032celociselne\032deleni\010
+WRITE string@----------------------------------\010
+WRITE string@:\032
+READ GF@operation string
+JUMPIFEQ scitani GF@operation string@add
+JUMPIFEQ odcitani GF@operation string@sub
+JUMPIFEQ nasobeni GF@operation string@mul
+JUMPIFEQ deleni GF@operation string@div
+WRITE string@\010chybny\032vstup!!!\010\010
+JUMP start
+LABEL scitani
+	WRITE string@----------------------------------\010
+	WRITE string@vybrana\032operace\032scitani:\010
+	WRITE string@\032\032zadejte\032prvni\032cislo:\032
+	READ GF@number1 int
+	WRITE string@\032\032zadejte\032druhe\032cislo:\032
+	READ GF@number2 int
+	WRITE string@\032\032vysledek\032operace:\032
+	WRITE GF@number1
+	WRITE string@\032+\032
+	WRITE GF@number2
+	WRITE string@\032=\032
+	ADD GF@number1 GF@number1 GF@number2
+	WRITE GF@number1
+	WRITE string@\010
+	WRITE string@----------------------------------\010
+	JUMP continue
+
+LABEL odcitani
+	WRITE string@----------------------------------\010
+	WRITE string@vybrana\032operace\032odcitani:\010
+	WRITE string@\032\032zadejte\032prvni\032cislo:\032
+	READ GF@number1 int
+	WRITE string@\032\032zadejte\032druhe\032cislo:\032
+	READ GF@number2 int
+	WRITE string@\032\032vysledek\032operace:\032
+	WRITE GF@number1
+	WRITE string@\032-\032
+	WRITE GF@number2
+	WRITE string@\032=\032
+	SUB GF@number1 GF@number1 GF@number2
+	WRITE GF@number1
+	WRITE string@\010
+	WRITE string@----------------------------------\010
+	JUMP continue
+
+LABEL nasobeni
+	WRITE string@----------------------------------\010
+	WRITE string@vybrana\032operace\032nasobeni:\010
+	WRITE string@\032\032zadejte\032prvni\032cislo:\032
+	READ GF@number1 int
+	WRITE string@\032\032zadejte\032druhe\032cislo:\032
+	READ GF@number2 int
+	WRITE string@\032\032vysledek\032operace:\032
+	WRITE GF@number1
+	WRITE string@\032*\032
+	WRITE GF@number2
+	WRITE string@\032=\032
+	MUL GF@number1 GF@number1 GF@number2
+	WRITE GF@number1
+	WRITE string@\010
+	WRITE string@----------------------------------\010
+	JUMP continue
+
+LABEL deleni
+	WRITE string@----------------------------------\010
+	WRITE string@vybrana\032operace\032deleni:\010
+	WRITE string@\032\032zadejte\032prvni\032cislo:\032
+	READ GF@number1 int
+	WRITE string@\032\032zadejte\032druhe\032cislo:\032
+	READ GF@number2 int
+	IDIV GF@operation GF@number1 GF@number2
+	WRITE string@\032\032vysledek\032operace:\032
+	WRITE GF@number1
+	WRITE string@\032\111\032
+	WRITE GF@number2
+	WRITE string@\032=\032
+	WRITE GF@operation
+	WRITE string@\010
+	WRITE string@----------------------------------\010
+	JUMP continue
+
+LABEL continue
+	WRITE string@pro\032pokracovani\032zadej\032'c'\032pro\032ukonceni\032'enter':\032
+	READ GF@operation string
+	JUMPIFEQ start GF@operation string@c
+LABEL end
